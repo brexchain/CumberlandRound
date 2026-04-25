@@ -1,5 +1,5 @@
 import { motion } from 'motion/react';
-import { ExternalLink, MessageCircle, ShoppingBag } from 'lucide-react';
+import { ExternalLink, MessageCircle, Briefcase, Hammer } from 'lucide-react';
 
 const artists = [
   {
@@ -26,7 +26,7 @@ const artists = [
       'https://images.unsplash.com/photo-1565191999001-551c187427bb?auto=format&fit=crop&q=80&w=800',
     ]
   }
-]
+];
 
 export default function Artists() {
   const getWhatsAppBuyLink = (name: string, phone: string) => {
@@ -35,93 +35,91 @@ export default function Artists() {
   };
 
   return (
-    <section id="kuenstler" className="py-24 bg-brand-bg overflow-hidden">
+    <section id="kuenstler" className="py-32 relative overflow-hidden bg-[var(--brand-bg)]">
       <div className="max-w-7xl mx-auto px-6 md:px-10">
-        <div className="flex flex-col md:flex-row justify-between items-end mb-24 gap-8">
-          <div>
-            <div className="flex items-center gap-4 mb-4">
-              <span className="font-mono text-brand-primary">SEC_04</span>
-              <div className="h-[2px] w-12 bg-brand-primary" />
+        <div className="mb-24 flex flex-col items-center text-center">
+            <div className="flex items-center gap-4 mb-6">
+                <div className="w-12 h-12 glass-card rounded-2xl flex items-center justify-center text-brand-primary">
+                    <Hammer className="w-6 h-6" />
+                </div>
+                <h2 className="text-xl font-bold uppercase tracking-widest text-[var(--brand-text)]">The Ghost Collective</h2>
             </div>
-            <h2 className="text-[16vw] md:text-9xl font-display font-black uppercase text-brand-text leading-none overflow-hidden">
-              Schnitt <br/> <span className="text-brand-primary">Die Geister</span>
-            </h2>
-          </div>
-          <p className="max-w-xs font-mono text-[10px] uppercase tracking-[0.3em] text-brand-muted">
-            Unsere Künstler fräsen sich durch die Materie. Supporte lokales Handwerk direkt.
-          </p>
+            <h3 className="text-5xl md:text-[8rem] font-bold leading-[0.85] uppercase tracking-tighter mb-8 max-w-4xl text-center">
+               Visionäre <span className="text-brand-primary">Macher</span>
+            </h3>
+            <p className="max-w-xl text-[var(--brand-muted)] text-lg leading-relaxed">
+              Unsere Künstler fräsen sich durch die Materie. Ein Kollektiv aus Handwerker:innen, Coder:innen und Visionär:innen.
+            </p>
         </div>
 
-        <div className="space-y-64">
+        <div className="space-y-32">
           {artists.map((artist, index) => (
             <motion.div
               key={artist.name}
-              initial={{ opacity: 0 }}
-              whileInView={{ opacity: 1 }}
-              viewport={{ once: true, margin: "-100px" }}
-              className="relative"
+              initial={{ opacity: 0, y: 40 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              className="group"
             >
-              <div className="grid lg:grid-cols-12 gap-12 lg:gap-24 relative z-10">
-                <div className="lg:col-span-5 order-2 lg:order-1">
-                  <div className="rounded-[60px] border-2 border-brand-primary/20 p-12 bg-brand-bg/50 backdrop-blur-xl transition-all hover:border-brand-primary">
-                    <span className="text-xs font-mono text-brand-primary mb-4 block tracking-[0.4em]">
+              <div className="grid lg:grid-cols-12 gap-12 items-center">
+                <div className={`lg:col-span-5 ${index % 2 === 1 ? 'lg:order-2' : ''}`}>
+                  <div className="glass-card p-10 md:p-14 rounded-[40px] hover:border-brand-primary transition-all duration-500 shadow-xl">
+                    <span className="text-xs font-mono font-bold text-brand-primary mb-4 block tracking-[0.4em]">
                       {artist.role.toUpperCase()}
                     </span>
-                    <h3 className="text-5xl md:text-7xl font-display font-black mb-8 text-brand-text">
+                    <h3 className="text-4xl md:text-6xl font-bold mb-8 leading-none">
                       {artist.name}
                     </h3>
-                    <p className="text-xl leading-relaxed text-brand-text/70 mb-10 font-bold">
+                    <p className="text-lg leading-relaxed text-[var(--brand-muted)] mb-10">
                       {artist.description}
                     </p>
                     
                     <div className="flex flex-col gap-4">
                       <a
                         href={getWhatsAppBuyLink(artist.name, artist.phone)}
-                        className="w-full py-5 rounded-full bg-[#25D366] text-white flex items-center justify-center gap-3 font-mono text-[10px] font-black uppercase hover:scale-105 transition-transform shadow-lg"
+                        className="w-full py-4 rounded-2xl bg-[#25D366] text-white flex items-center justify-center gap-3 font-bold text-xs uppercase hover:scale-[1.02] transition-transform shadow-lg"
                       >
                         <MessageCircle className="w-5 h-5" />
-                        <span>Anfrage via WhatsApp</span>
+                        <span>Work with {artist.name.split(' ')[0]}</span>
                       </a>
                       
-                      <div className="flex gap-4">
-                        <a
-                          href={artist.link}
-                          target="_blank"
-                          rel="noopener noreferrer"
-                          className="flex-grow py-5 rounded-full border-2 border-brand-primary flex items-center justify-center gap-2 font-mono text-[10px] uppercase font-black hover:bg-brand-primary hover:text-brand-bg transition-all"
+                      <div className="grid grid-cols-2 gap-4">
+                        <button 
+                          onClick={() => window.open(getWhatsAppBuyLink(artist.name, artist.phone), '_blank')}
+                          className="py-4 rounded-2xl bg-brand-primary text-white flex items-center justify-center gap-2 font-bold text-[10px] uppercase hover:opacity-90 transition-all glow-primary"
                         >
-                          <ExternalLink className="w-4 h-4" />
-                          Portfolio
+                          <Briefcase className="w-4 h-4" />
+                          Collab
+                        </button>
+                        <a
+                           href={artist.link}
+                           target="_blank"
+                           rel="noopener noreferrer"
+                           className="py-4 rounded-2xl glass-card flex items-center justify-center gap-2 font-bold text-[10px] uppercase hover:bg-[var(--brand-border)] transition-all"
+                        >
+                           <ExternalLink className="w-4 h-4" />
+                           Bio
                         </a>
                       </div>
                     </div>
                   </div>
                 </div>
 
-                <div className="lg:col-span-7 order-1 lg:order-2 flex flex-col gap-12">
+                <div className={`lg:col-span-7 grid grid-cols-2 gap-6 ${index % 2 === 1 ? 'lg:order-1' : ''}`}>
                    {artist.works.map((img, i) => (
-                     <motion.div
-                      key={i}
-                      whileInView={{ x: i % 2 === 0 ? 20 : -20, rotate: i % 2 === 0 ? 1 : -1 }}
-                      className="relative w-full aspect-video rounded-[60px] border-2 border-brand-primary/20 overflow-hidden"
-                     >
+                     <div key={i} className={`relative rounded-3xl overflow-hidden glass-card p-0 h-[400px] ${i === 0 ? 'mt-0' : 'mt-12'}`}>
                         <img 
                           src={img} 
                           alt="Artist work" 
-                          className="w-full h-full object-cover grayscale hover:grayscale-0 transition-all duration-1000 scale-110 hover:scale-100" 
+                          className="w-full h-full object-cover grayscale hover:grayscale-0 transition-all duration-700" 
                           referrerPolicy="no-referrer"
                         />
-                        <div className="absolute bottom-6 right-10 bg-brand-primary text-brand-bg px-6 py-2 rounded-full font-mono text-[10px] font-black uppercase">
-                          C54_WORK_0{i+1}.RAW
+                        <div className="absolute top-4 left-4 glass-card px-4 py-1.5 rounded-full text-[8px] font-mono font-bold uppercase text-white bg-black/40">
+                          PROJ_0{i+1}
                         </div>
-                     </motion.div>
+                     </div>
                    ))}
                 </div>
-              </div>
-
-              {/* Huge Background Text Overlay */}
-              <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-full text-[20vw] font-display font-black opacity-5 pointer-events-none text-brand-primary whitespace-nowrap overflow-hidden">
-                {artist.name.toUpperCase()}
               </div>
             </motion.div>
           ))}

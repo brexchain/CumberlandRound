@@ -25,45 +25,58 @@
 }
 
 :root {
-  --brand-bg: #F5F5F0;
-  --brand-text: #0C0C0C;
-  --brand-primary: #1D4ED8; /* Deep Blue in light mode for better contrast */
-  --brand-muted: #737373;
+  --brand-bg: #FCFCFD;
+  --brand-text: #0F172A;
+  --brand-primary: #3B82F6; /* Modern Blue */
+  --brand-accent: #8B5CF6;  /* Violet */
+  --brand-secondary: #06B6D4; /* Cyan */
+  --brand-muted: #64748B;
+  --brand-card: #FFFFFF;
+  --brand-border: #E2E8F0;
 }
 
 .dark {
-  --brand-bg: #0C0C0C;
-  --brand-text: #F5F5F0;
-  --brand-primary: #D9ED92; /* Neon Lime in dark mode */
-  --brand-muted: #525252;
+  --brand-bg: #030712;
+  --brand-text: #F8FAFC;
+  --brand-primary: #60A5FA;
+  --brand-accent: #A78BFA;
+  --brand-secondary: #22D3EE;
+  --brand-muted: #94A3B8;
+  --brand-card: #111827;
+  --brand-border: #1F2937;
 }
 
 html {
   scroll-behavior: smooth;
-  @apply transition-colors duration-500;
+  @apply transition-colors duration-500 antialiased;
 }
 
 body {
-  @apply bg-brand-bg text-brand-text antialiased font-sans overflow-x-hidden selection:bg-brand-primary selection:text-brand-bg;
-  background-image: 
-    radial-gradient(circle at 50% 50%, rgba(217, 237, 146, 0.05) 0%, transparent 50%),
-    url('https://www.transparenttextures.com/patterns/dark-matter.png');
+  @apply bg-[var(--brand-bg)] text-[var(--brand-text)] font-sans overflow-x-hidden transition-colors;
 }
 
 h1, h2, h3, h4, h5, h6 {
-  @apply font-display font-black tracking-tight;
+  @apply font-display font-bold tracking-tight;
 }
 
 .section-oval {
-  @apply rounded-[60px] md:rounded-[120px] overflow-hidden transition-all duration-700;
+  @apply rounded-[32px] md:rounded-[64px] overflow-hidden transition-all duration-700;
+}
+
+.glass-card {
+  @apply bg-[var(--brand-card)]/50 backdrop-blur-xl border border-[var(--brand-border)] shadow-sm transition-all duration-300;
+}
+
+.glow-primary {
+  @apply shadow-[0_0_20px_-5px_rgba(59,130,246,0.3)];
 }
 
 .machine-nav-btn {
-  @apply flex flex-col items-center justify-center gap-1 p-2 transition-all duration-300 rounded-2xl;
+  @apply flex flex-col items-center justify-center gap-1 p-2 transition-all duration-300 rounded-xl;
 }
 
 .machine-nav-btn span {
-  @apply text-[7px] font-mono font-black uppercase tracking-[0.2em] text-[var(--brand-text)] opacity-40;
+  @apply text-[7px] font-mono font-bold uppercase tracking-[0.2em] text-[var(--brand-text)] opacity-40;
 }
 
 .machine-nav-btn.active {
@@ -83,7 +96,7 @@ h1, h2, h3, h4, h5, h6 {
 }
 
 .pill-card {
-  @apply rounded-[40px] border-2 border-brand-primary/10 p-8 bg-[var(--brand-bg)]/40 backdrop-blur-xl transition-all duration-500 hover:border-brand-primary;
+  @apply rounded-3xl border border-[var(--brand-border)] p-8 bg-[var(--brand-card)]/40 backdrop-blur-xl transition-all duration-500 hover:border-brand-primary;
 }
 
 .noise-overlay {
@@ -95,32 +108,32 @@ h1, h2, h3, h4, h5, h6 {
   height: 100%;
   z-index: 9999;
   background-image: url('data:image/svg+xml,%3Csvg viewBox="0 0 200 200" xmlns="http://www.w3.org/2000/svg"%3E%3Cfilter id="noiseFilter"%3E%3CfeTurbulence type="fractalNoise" baseFrequency="0.65" numOctaves="3" stitchTiles="stitch"/%3E%3C/filter%3E%3Crect width="100%25" height="100%25" filter="url(%23noiseFilter)"/%3E%3C/svg%3E');
-  opacity: 0.03;
+  @apply opacity-[0.02] dark:opacity-[0.04];
 }
 
 .marquee-container {
-  @apply py-6 border-y-2 border-brand-primary/10 overflow-hidden whitespace-nowrap bg-brand-bg;
+  @apply py-6 border-y border-[var(--brand-border)] overflow-hidden whitespace-nowrap bg-[var(--brand-bg)];
 }
 
 .marquee-content {
-  @apply inline-block font-mono text-3xl font-black uppercase italic animate-marquee;
+  @apply inline-block font-mono text-3xl font-black uppercase animate-marquee;
 }
 
 /* Custom Scrollbar for 2026 */
 ::-webkit-scrollbar {
-  width: 8px;
+  width: 10px;
 }
 
 ::-webkit-scrollbar-track {
-  @apply bg-brand-bg;
+  @apply bg-[var(--brand-bg)];
 }
 
 ::-webkit-scrollbar-thumb {
-  @apply bg-brand-primary border-2 border-brand-bg rounded-none;
+  @apply bg-[var(--brand-muted)]/20 border-2 border-[var(--brand-bg)] rounded-full hover:bg-[var(--brand-muted)]/40 transition-colors;
 }
 
 .glitch-text {
-  text-shadow: 2px 0 var(--color-brand-accent), -2px 0 var(--color-brand-secondary);
+  text-shadow: 2px 0 var(--brand-accent), -2px 0 var(--brand-secondary);
 }
 
 .rotated-label {

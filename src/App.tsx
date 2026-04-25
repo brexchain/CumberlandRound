@@ -11,6 +11,7 @@ import Rooms from './components/Rooms';
 import Equipment from './components/Equipment';
 import Artists from './components/Artists';
 import Membership from './components/Membership';
+import Economics from './components/Economics';
 import Contact from './components/Contact';
 import Footer from './components/Footer';
 import ManifestoGenerator from './components/ManifestoGenerator';
@@ -38,6 +39,7 @@ export default function App() {
         <ManifestoGenerator />
         <Artists />
         <Membership />
+        <Economics />
         <Contact />
       </main>
       <Footer />

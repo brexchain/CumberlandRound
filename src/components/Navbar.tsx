@@ -4,9 +4,9 @@ import { Settings, Axe, Zap, Wrench, Hammer, Layers, Sun, Moon } from 'lucide-re
 
 const machineNav = [
   { name: 'Basis', href: '#ueber-uns', icon: Axe, machine: 'WASSER' },
-  { name: 'Mühle', href: '#raeume', icon: Layers, machine: 'FRÄSEN' },
-  { name: 'Klinge', href: '#equipment', icon: Wrench, machine: 'SCHLIFF' },
+  { name: 'Arsenal', href: '#equipment', icon: Wrench, machine: 'METALL' },
   { name: 'Geister', href: '#kuenstler', icon: Hammer, machine: 'SCHNITT' },
+  { name: 'Liquid', href: '#economics', icon: Settings, machine: 'LIQUID' },
   { name: 'Vortex', href: '#kontakt', icon: Zap, machine: 'KERN' },
 ];
 
@@ -34,34 +34,37 @@ export default function Navbar({ isDark, toggleTheme }: NavbarProps) {
 
   return (
     <>
-      <nav className="fixed top-0 left-0 right-0 z-50 p-4 pointer-events-none">
-        <div className="max-w-7xl mx-auto flex justify-between items-center pointer-events-auto">
+      <nav className="fixed top-6 left-1/2 -translate-x-1/2 z-50 w-[95%] max-w-7xl pointer-events-none">
+        <div className="flex justify-between items-center pointer-events-auto px-6 py-3 glass-card rounded-3xl glow-primary">
           <a href="#" className="flex items-center gap-3">
-            <span className="text-2xl font-display italic font-black uppercase bg-brand-primary text-brand-bg px-4 py-1 rounded-xl">
-              C54
-            </span>
+            <div className="w-10 h-10 bg-brand-primary rounded-xl flex items-center justify-center rotate-3 hover:rotate-0 transition-transform">
+              <span className="text-xl font-display font-black text-white">C</span>
+            </div>
             <div className="hidden md:flex flex-col">
-              <span className="text-[8px] font-mono uppercase tracking-[0.4em] font-black leading-none text-brand-primary">Cumberland</span>
-              <span className="text-[8px] font-mono uppercase tracking-[0.4em] font-black text-[var(--brand-text)] leading-none">Creative Lab v2.6</span>
+              <span className="text-[10px] font-bold uppercase tracking-widest text-[var(--brand-text)]">Cumberland54</span>
+              <span className="text-[8px] font-mono font-medium text-[var(--brand-muted)]">Lab v2.6 // 2026</span>
             </div>
           </a>
           
-          <div className="flex items-center gap-4">
+          <div className="flex items-center gap-3">
+            <div className="hidden sm:flex px-4 py-1.5 glass-card rounded-full border-brand-primary/10">
+              <span className="text-[9px] font-mono font-bold text-brand-primary animate-pulse flex items-center gap-2">
+                <span className="w-1.5 h-1.5 bg-brand-primary rounded-full" />
+                SYSTEM_STABLE
+              </span>
+            </div>
             <button 
               onClick={toggleTheme}
-              className="p-3 bg-[var(--brand-bg)]/80 backdrop-blur-md border-2 border-brand-primary/20 rounded-full text-brand-primary hover:scale-110 transition-transform active:scale-95 shadow-lg"
+              className="p-2.5 glass-card border-none hover:bg-brand-primary/10 transition-colors rounded-xl text-[var(--brand-text)]"
             >
               {isDark ? <Sun className="w-5 h-5" /> : <Moon className="w-5 h-5" />}
             </button>
-            <div className="px-4 py-2 bg-brand-accent/20 backdrop-blur-md border border-brand-accent/30 rounded-full">
-              <span className="text-[8px] font-mono font-black uppercase text-brand-accent animate-pulse">System Live: v3.14</span>
-            </div>
           </div>
         </div>
       </nav>
 
-      <div className="fixed bottom-6 left-1/2 -translate-x-1/2 z-50 w-[95%] max-w-lg">
-        <div className="bg-brand-bg/80 backdrop-blur-2xl border-2 border-brand-primary/20 rounded-[40px] p-2 flex justify-around items-center shadow-[0_20px_50px_rgba(0,0,0,0.5)]">
+      <div className="fixed bottom-8 left-1/2 -translate-x-1/2 z-50 w-[95%] max-w-xl">
+        <div className="glass-card rounded-[32px] p-2 flex justify-around items-center glow-primary border-brand-primary/5">
           {machineNav.map((item) => {
             const Icon = item.icon;
             const isActive = activeTab === item.href;
@@ -70,14 +73,14 @@ export default function Navbar({ isDark, toggleTheme }: NavbarProps) {
                 key={item.name}
                 href={item.href}
                 onClick={() => setActiveTab(item.href)}
-                className={`machine-nav-btn flex-1 ${isActive ? 'active' : ''}`}
+                className={`flex-1 flex flex-col items-center justify-center p-3 rounded-2xl transition-all duration-300 ${isActive ? 'bg-brand-primary text-white' : 'text-[var(--brand-muted)] hover:text-[var(--brand-text)] hover:bg-[var(--brand-muted)]/5'}`}
               >
                 <motion.div
-                  whileTap={{ scale: 0.8 }}
+                  whileTap={{ scale: 0.9 }}
                   className="flex flex-col items-center"
                 >
-                  <Icon className={`mb-1 ${isActive ? 'text-brand-primary drop-shadow-[0_0_8px_var(--color-brand-primary)]' : ''}`} />
-                  <span className={isActive ? 'text-brand-primary' : ''}>{item.machine}</span>
+                  <Icon className="w-5 h-5 mb-1" />
+                  <span className="text-[8px] font-mono font-bold tracking-widest leading-none">{item.machine}</span>
                 </motion.div>
               </a>
             );

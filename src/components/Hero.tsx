@@ -3,72 +3,73 @@ import { ArrowRight, Zap, Settings } from 'lucide-react';
 
 export default function Hero() {
   return (
-    <section className="relative min-h-[100svh] flex flex-col justify-center px-6 md:px-10 py-12 overflow-hidden bg-brand-bg rounded-b-[80px] md:rounded-b-[200px]">
-      {/* Decorative background layers */}
-      <div className="absolute top-0 right-0 w-1/2 h-full bg-brand-primary opacity-5 skew-x-12 transform translate-x-24 z-0" />
-      <div className="absolute bottom-0 left-0 w-full h-1/2 bg-brand-secondary opacity-5 blur-3xl z-0 rounded-full" />
+    <section className="relative min-h-[100svh] flex flex-col justify-center px-6 md:px-10 py-24 overflow-hidden rounded-b-[40px] md:rounded-b-[80px]">
+      {/* Dynamic Background Glows */}
+      <div className="absolute top-1/4 -left-20 w-96 h-96 bg-brand-primary/20 blur-[120px] rounded-full z-0" />
+      <div className="absolute bottom-1/4 -right-20 w-96 h-96 bg-brand-accent/20 blur-[120px] rounded-full z-0" />
       
       <div className="max-w-7xl mx-auto w-full relative z-10">
         <motion.div
-          initial={{ opacity: 0, y: 100 }}
+          initial={{ opacity: 0, y: 40 }}
           animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 1, ease: [0.16, 1, 0.3, 1] }}
+          transition={{ duration: 0.8, ease: [0.16, 1, 0.3, 1] }}
         >
-          <div className="flex items-center gap-4 mb-8">
-            <Zap className="w-6 h-6 text-brand-primary fill-brand-primary" />
-            <span className="text-[10px] font-mono font-black uppercase tracking-[0.4em] text-brand-primary/60">
-              Machined Excellence // 2026
+          <div className="flex items-center gap-3 mb-10">
+            <div className="w-8 h-[1px] bg-brand-primary" />
+            <span className="text-[10px] font-mono font-bold uppercase tracking-[0.4em] text-brand-primary">
+              Evolution // Creative Lab 2026
             </span>
           </div>
 
-          <h1 className="text-[14vw] sm:text-[14vw] md:text-[10rem] font-display font-black leading-[0.8] tracking-tighter uppercase mb-12 flex flex-col mix-blend-normal overflow-hidden text-[var(--brand-text)]">
+          <h1 className="text-[10vw] sm:text-[11vw] md:text-[8.5rem] font-display font-bold leading-[0.9] tracking-tight mb-12 flex flex-col text-[var(--brand-text)]">
             <span className="relative inline-block w-fit">
               Radikale
-              <motion.span 
-                initial={{ width: 0 }}
-                whileInView={{ width: '100%' }}
-                transition={{ delay: 0.5, duration: 1 }}
-                viewport={{ once: true }}
-                className="absolute -bottom-1 md:-bottom-2 left-0 h-1 md:h-2 bg-brand-primary z-[-1] rounded-full"
-              />
             </span>
-            <span className="text-brand-accent transform translate-x-0 md:-translate-x-12 leading-tight">
-              Vernetzung
-            </span>
-            <span className="flex items-center gap-3 md:gap-4 self-start md:self-end mt-4">
-              <span className="text-[12vw] md:text-8xl text-stroke text-transparent border-[var(--brand-text)]">2.6</span>
+            <span className="flex items-center gap-6">
+              <span className="text-brand-primary">Vernetzung</span>
               <motion.div
-                animate={{ rotate: [0, 90, 180, 270, 360] }}
-                transition={{ duration: 10, repeat: Infinity, ease: "linear" }}
-                className="text-brand-secondary"
+                animate={{ rotate: 360 }}
+                transition={{ duration: 20, repeat: Infinity, ease: "linear" }}
+                className="hidden lg:block p-4 glass-card rounded-full border-brand-primary/20"
               >
-                <Settings className="w-12 h-12 md:w-24 md:h-24" />
+                <Settings className="w-12 h-12 text-brand-primary" />
               </motion.div>
             </span>
           </h1>
 
-          <div className="grid md:grid-cols-12 gap-8 items-end">
-            <div className="md:col-span-7">
-              <p className="text-xl md:text-3xl font-display font-medium leading-tight text-brand-text/80 max-w-xl">
-                Wir <span className="text-brand-primary italic">fräsen</span> neue Pfade zwischen Kunst und <span className="text-brand-secondary italic">Technologie</span>. Ein Labor für die <span className="text-brand-accent italic">Verschmelzung</span> von Materie.
+          <div className="grid lg:grid-cols-12 gap-12 items-start mt-8">
+            <div className="lg:col-span-12">
+              <p className="text-xl md:text-3xl font-medium leading-tight text-[var(--brand-muted)] max-w-2xl mb-12">
+                Wir erschaffen Synergien zwischen <span className="text-[var(--brand-text)] font-bold">analoger Präzision</span> und <span className="text-[var(--brand-text)] font-bold">digitaler Vision</span>. Ein Raum für Fortschritt durch Kollaboration.
               </p>
-            </div>
-            
-            <div className="md:col-span-5 flex flex-col gap-4">
-              <a href="#kontakt" className="maximalist-btn group !rounded-full !px-8 !py-6">
-                <span>Start Sequence</span>
-                <ArrowRight className="w-5 h-5 ml-2 transition-transform group-hover:translate-x-2" />
-              </a>
+              
+              <div className="flex flex-wrap gap-4">
+                <a href="#kontakt" className="px-8 py-4 bg-brand-primary text-white rounded-2xl font-bold flex items-center gap-3 hover:scale-105 transition-all glow-primary">
+                  <span>Start a Project</span>
+                  <ArrowRight className="w-4 h-4" />
+                </a>
+                <a href="#economics" className="px-8 py-4 glass-card rounded-2xl font-bold flex items-center gap-3 hover:bg-[var(--brand-border)] transition-all">
+                  <span>View Services</span>
+                </a>
+              </div>
             </div>
           </div>
         </motion.div>
       </div>
 
-      {/* Floating Status UI */}
-      <div className="absolute top-1/2 right-10 hidden xl:block -translate-y-1/2">
-        <div className="rotated-label font-mono text-[8px] uppercase tracking-[0.6em] text-brand-primary opacity-30">
-          OPERATIONAL • EXCELLENCE • COLLABORATION
+      {/* Floating Meta Info */}
+      <div className="absolute bottom-10 left-10 hidden lg:flex items-center gap-6 z-10 px-6 py-3 glass-card rounded-2xl">
+        <div className="flex -space-x-3">
+          {[1, 2, 3].map(i => (
+            <div key={i} className="w-8 h-8 rounded-full border-2 border-[var(--brand-card)] bg-brand-muted/20 overflow-hidden">
+              <img src={`https://i.pravatar.cc/100?img=${i+10}`} alt="avatar" />
+            </div>
+          ))}
         </div>
+        <div className="h-8 w-[1px] bg-[var(--brand-border)]" />
+        <span className="text-[10px] font-mono font-bold uppercase tracking-wider text-[var(--brand-muted)]">
+          12 Active Creators Online
+        </span>
       </div>
     </section>
   );
